@@ -35,10 +35,18 @@ public class CustomerController {
 		return "customer-form";
 	}
 	
-	@PostMapping("saveCustomer")
+	@PostMapping("/saveCustomer")
 	public String saveCustomer(@ModelAttribute("customer") Customer customer) {
 		customerService.saveCustomer(customer);
 
 		return "redirect:/customer/list";
+	}
+	
+	@GetMapping("/showFormForUpdate")
+	public String showUpateCustomerForm(@RequestParam("customerId") int id, Model model) {
+		Customer customer =customerService.getCustomer(id);
+		model.addAttribute("customer", customer);
+		return "customer-form";	
+		
 	}
 }
