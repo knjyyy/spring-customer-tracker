@@ -12,11 +12,11 @@ import com.rk3.springdemo.entity.Customer;
 import com.rk3.springdemo.service.CustomerService;
 
 @Service
-public class CustomerServiceImpl implements CustomerService{
+public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	CustomerDAO customerDAO;
-	
+
 	@Override
 	@Transactional
 	public List<Customer> getCustomers() {
@@ -27,13 +27,20 @@ public class CustomerServiceImpl implements CustomerService{
 	@Transactional
 	public void saveCustomer(Customer customer) {
 		customerDAO.saveCustomer(customer);
-		
+
 	}
 
 	@Override
 	@Transactional
 	public Customer getCustomer(int id) {
 		return customerDAO.getCustomer(id);
+	}
+
+	@Override
+	@Transactional
+	public void deleteCustomer(int id) {
+		customerDAO.deleteCustomer(id);
+
 	}
 
 }
